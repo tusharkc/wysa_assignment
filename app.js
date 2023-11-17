@@ -1,24 +1,23 @@
 import express from "express";
+import bodyParser from "body-parser";
+import mongoose from "mongoose";
+import { apiCurrentVersion } from "./data/constants.js";
 import userOnBoardingRoutes from "./routes/userOnboarding.js";
-const app = express();
+
+const uri =
+  "mongodb+srv://tusharkc2502:TmEpGVP0ugV8Fngm@wysadb.e4dmafh.mongodb.net/?retryWrites=true&w=majority";
+
 const port = 3000;
 
-import { MongoClient } from "mongodb";
-import { apiCurrentVersion } from "./data/constants.js";
-const uri =
-  "mongodb+srv://tusharKc2502:hhg1tTjecrC2VSL0@cluster0.wwxqo43.mongodb.net/?retryWrites=true&w=majority";
+mongoose
+  .connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log("MongoDB connected"))
+  .catch((err) => console.log(err));
 
-MongoClient.connect(uri, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+const app = express();
 
-MongoClient.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then((client) => {
-    const db = client.db("wysa_db");
-    client.close();
-  })
-  .catch((error) => console.error(error));
+app.use(bodyParser.json()); // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 app.use(`/api/${apiCurrentVersion}/userOnBoarding`, userOnBoardingRoutes);
 

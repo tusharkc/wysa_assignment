@@ -6,6 +6,7 @@ const UserOnBoardingDataSchema = new Schema({
     type: Date,
     default: new Date(),
   },
+  userId: String,
   weekSelection: String,
   sleepTime: String,
   wakeUpTime: String,
@@ -14,6 +15,6 @@ const UserOnBoardingDataSchema = new Schema({
 });
 
 export const UserOnBoardingDataModel = mongoose.model(
-  "userOnBoardingDataModel",
+  "UserOnBoardingDataModel",
   UserOnBoardingDataSchema
 );

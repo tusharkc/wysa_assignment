@@ -1,8 +1,12 @@
 import express from "express";
-import { saveUserOnboardingData } from "../controllers/userOnboardingController.js";
+import {
+  getUserSleepEfficiency,
+  saveUserOnboardingData,
+} from "../controllers/userOnboardingController.js";
 
 const router = express.Router();
 
-router.get("/saveUserOnboardingData", saveUserOnboardingData);
+router.post("/saveUserOnboardingData", saveUserOnboardingData);
+router.get("/getUserSleepEfficiency/:userId", getUserSleepEfficiency);
 
 export default router;
