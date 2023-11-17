@@ -12,6 +12,8 @@ const UserOnBoardingDataSchema = new Schema({
   wakeUpTime: String,
   totalSleepInMinutes: Number,
   changes: [{ change: String }],
+  nickname: String,
+  password: String,
 });
 
 export const UserOnBoardingDataModel = mongoose.model(
